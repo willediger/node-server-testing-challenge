@@ -34,13 +34,13 @@ describe("users model", () => {
   });
   describe("delete()", () => {
     it("should delete 1 user", async () => {
-      let user = await Users.delete(1);
+      let user = await Users.del(1);
       expect(user.username).toBe("gaffer");
       expect(user.password).toBe("test");
       let users = await db("users");
       expect(users).toHaveLength(1);
 
-      user = await Users.delete(2);
+      user = await Users.del(2);
       expect(user.username).toBe("sam");
       expect(user.password).toBe("test2");
 
