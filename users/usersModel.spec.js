@@ -32,4 +32,20 @@ describe("users model", () => {
       expect(user.password).toBe("test2");
     });
   });
+  describe("delete()", () => {
+    it("should delete 1 user", async () => {
+      let user = await Users.delete(1);
+      expect(user.username).toBe("gaffer");
+      expect(user.password).toBe("test");
+      let users = await db("users");
+      expect(users).toHaveLength(1);
+
+      user = await Users.delete(2);
+      expect(user.username).toBe("sam");
+      expect(user.password).toBe("test2");
+
+      users = await db("users");
+      expect(users).toHaveLength(0);
+    });
+  });
 });
